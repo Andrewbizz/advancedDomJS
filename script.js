@@ -95,6 +95,33 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     target.scrollIntoView({ behavior: 'smooth' });
   }
 });
+
+// const h1 = document.querySelector('h1');
+
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes);
+// console.log(h1.children);
+// console.log(h1.firstChild);
+// console.log(h1.lastChild);
+
+// //GOIN UP
+
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
+
+// h1.closest('.header').style.backgroundColor = 'yellow';
+
+// // going sideways
+
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+
+// console.log(h1.parentElement.children);
+
+// [...h1.parentElement.children].forEach(function (el) {
+//   if (el !== h1) el.style.transform = 'scale(0.5)';
+// });
+
 // document.querySelectorAll('.nav__link').forEach(el => {
 //   el.addEventListener('click', function (e) {
 //     e.preventDefault();
