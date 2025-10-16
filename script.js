@@ -52,7 +52,7 @@ const message = document.createElement('div');
 message.classList.add('cookie-message');
 // message.textContent = 'we use cookies for improved functionality and analytics';
 
-message.innerHTML = `we use cookies for improved functionality and analytics' <button class ='btn btn--close-cookie'> Got it </button>;`;
+message.innerHTML = `we use cookies for improved functionality and analytics' <button class ='btn btn--close-cookie'> Got it </button>`;
 
 header.prepend(message);
 // header.append(message);
@@ -60,7 +60,7 @@ header.prepend(message);
 // header.append(message.cloneNode(true));
 // header.append(message.cloneNode(true));
 
-// header.before(message);
+header.before(message);
 
 // /removing elements
 
@@ -71,3 +71,100 @@ document.querySelector('.btn--close-cookie').addEventListener('click', e => {
 });
 
 //insertadjacent html is better
+
+//styles
+
+message.style.backgroundColor = '#37383d';
+message.style.width = '100%';
+console.log(getComputedStyle(message));
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px';
+
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.className);
+
+logo.alt = 'beautiful logo';
+
+console.log(logo.designer);
+
+logo.getAttribute('designer');
+logo.setAttribute('company', 'bankist Company');
+
+const links = document.querySelector('.twitter-link');
+console.log(links.href);
+
+//data attributs
+console.log(logo.dataset.versionNumber);
+
+// classList
+
+// logo.classList.add('c', 'b');
+// logo.classList.remove('c');
+// logo.classList.contains('c');
+// logo.classList.toggle('c');
+
+const btnScrlTo = document.querySelector('.btn--scroll-to');
+const sectionTo = document.querySelector('#section--1');
+
+btnScrlTo.addEventListener('click', () => {
+  // e.preventDefault;
+
+  // const s1Cord = sectionTo.getBoundingClientRect();
+  // console.log(s1Cord);
+
+  // window.scrollTo(
+  //   s1Cord.left + window.pageXOffset,
+  //   s1Cord.top + window.pageYOffset
+  // );
+
+  // window.scrollTo({
+  //   left: s1Cord.left + window.pageXOffset,
+  //   top: s1Cord.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  sectionTo.scrollIntoView({
+    behavior: 'smooth',
+  });
+});
+const h1 = document.querySelector('h1');
+// h1.addEventListener('mouseenter', function (e) {
+//   alert('ad event listener: great you are reading the heading');
+//   console.log('goated');
+// });
+
+const h1Alert = function (e) {
+  alert('ad event listener: great you are reading the heading');
+  console.log('goated');
+};
+
+h1.addEventListener('mouseenter', h1Alert);
+
+setTimeout(() => {
+  h1.removeEventListener('mouseenter', h1Alert);
+}, 3000);
+
+//random colors
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('link', e.target, e.currentTarget);
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('container', e.target, e.currentTarget);
+  // e.stopPropagation();
+});
+document.querySelector('.nav').addEventListener('click', function (e) {
+  // e.preventDefault();
+  this.style.backgroundColor = randomColor();
+  console.log('nav', e.target, e.currentTarget);
+});
