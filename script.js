@@ -70,33 +70,67 @@ document.querySelector('.btn--close-cookie').addEventListener('click', e => {
   message.remove();
 });
 
+const btnScrlTo = document.querySelector('.btn--scroll-to');
+const sectionTo = document.querySelector('#section--1');
+
+btnScrlTo.addEventListener('click', () => {
+  sectionTo.scrollIntoView({
+    behavior: 'smooth',
+  });
+});
+
 //insertadjacent html is better
 
+//event delegation
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains('nav__link')) {
+    console.log('link ');
+
+    const id = e.target.getAttribute('href');
+    const target = document.querySelector(id);
+    console.log(id);
+
+    target.scrollIntoView({ behavior: 'smooth' });
+  }
+});
+// document.querySelectorAll('.nav__link').forEach(el => {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+
+//     const id = this.getAttribute('href');
+//     const target = document.querySelector(id);
+//     console.log(id);
+
+//     target.scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
 //styles
 
-message.style.backgroundColor = '#37383d';
-message.style.width = '100%';
-console.log(getComputedStyle(message));
+// message.style.backgroundColor = '#37383d';
+// message.style.width = '100%';
+// console.log(getComputedStyle(message));
 
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px';
+// message.style.height =
+//   Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px';
 
-const logo = document.querySelector('.nav__logo');
-console.log(logo.alt);
-console.log(logo.className);
+// const logo = document.querySelector('.nav__logo');
+// console.log(logo.alt);
+// console.log(logo.className);
 
-logo.alt = 'beautiful logo';
+// logo.alt = 'beautiful logo';
 
-console.log(logo.designer);
+// console.log(logo.designer);
 
-logo.getAttribute('designer');
-logo.setAttribute('company', 'bankist Company');
+// logo.getAttribute('designer');
+// logo.setAttribute('company', 'bankist Company');
 
-const links = document.querySelector('.twitter-link');
-console.log(links.href);
+// const links = document.querySelector('.twitter-link');
+// console.log(links.href);
 
-//data attributs
-console.log(logo.dataset.versionNumber);
+// //data attributs
+// console.log(logo.dataset.versionNumber);
 
 // classList
 
@@ -105,66 +139,42 @@ console.log(logo.dataset.versionNumber);
 // logo.classList.contains('c');
 // logo.classList.toggle('c');
 
-const btnScrlTo = document.querySelector('.btn--scroll-to');
-const sectionTo = document.querySelector('#section--1');
-
-btnScrlTo.addEventListener('click', () => {
-  // e.preventDefault;
-
-  // const s1Cord = sectionTo.getBoundingClientRect();
-  // console.log(s1Cord);
-
-  // window.scrollTo(
-  //   s1Cord.left + window.pageXOffset,
-  //   s1Cord.top + window.pageYOffset
-  // );
-
-  // window.scrollTo({
-  //   left: s1Cord.left + window.pageXOffset,
-  //   top: s1Cord.top + window.pageYOffset,
-  //   behavior: 'smooth',
-  // });
-
-  sectionTo.scrollIntoView({
-    behavior: 'smooth',
-  });
-});
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 // h1.addEventListener('mouseenter', function (e) {
 //   alert('ad event listener: great you are reading the heading');
 //   console.log('goated');
 // });
 
-const h1Alert = function (e) {
-  alert('ad event listener: great you are reading the heading');
-  console.log('goated');
-};
+// const h1Alert = function (e) {
+//   alert('ad event listener: great you are reading the heading');
+//   console.log('goated');
+// };
 
-h1.addEventListener('mouseenter', h1Alert);
+// h1.addEventListener('mouseenter', h1Alert);
 
-setTimeout(() => {
-  h1.removeEventListener('mouseenter', h1Alert);
-}, 3000);
+// setTimeout(() => {
+//   h1.removeEventListener('mouseenter', h1Alert);
+// }, 3000);
 
 //random colors
 
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
 
-const randomColor = () =>
-  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
-document.querySelector('.nav__link').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log('link', e.target, e.currentTarget);
-});
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log('link', e.target, e.currentTarget);
+// });
 
-document.querySelector('.nav__links').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log('container', e.target, e.currentTarget);
-  // e.stopPropagation();
-});
-document.querySelector('.nav').addEventListener('click', function (e) {
-  // e.preventDefault();
-  this.style.backgroundColor = randomColor();
-  console.log('nav', e.target, e.currentTarget);
-});
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log('container', e.target, e.currentTarget);
+//   // e.stopPropagation();
+// });
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//   // e.preventDefault();
+//   this.style.backgroundColor = randomColor();
+//   console.log('nav', e.target, e.currentTarget);
+// });
