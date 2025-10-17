@@ -9,6 +9,11 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const header = document.querySelector('.header');
+const allSections = document.querySelectorAll('.section');
+const allButtons = document.getElementsByTagName('button');
+const message = document.createElement('div');
+const nav = document.querySelector('.nav');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -38,16 +43,11 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-const header = document.querySelector('.header');
-const allSections = document.querySelectorAll('.section');
 //
 
 document.getElementById('section--1');
-const allButtons = document.getElementsByTagName('button');
 
 // creating elements in js
-
-const message = document.createElement('div');
 
 message.classList.add('cookie-message');
 // message.textContent = 'we use cookies for improved functionality and analytics';
@@ -125,6 +125,29 @@ tabContainer.addEventListener('click', function (e) {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
+const handleHover = function (e, opacity) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('nav').querySelectorAll('.nav__link');
+
+    const logo = link.closest('nav').querySelector('img');
+
+    siblings.forEach(e => {
+      if (e !== link) e.style.opacity = opacity;
+    });
+    logo.style.opacity = opacity;
+  }
+};
+
+nav.addEventListener('mouseover', function (e) {
+  handleHover(e, 0.5);
+});
+
+nav.addEventListener('mouseout', function (e) {
+  handleHover(e, 1);
+});
+///menu fade animations
 
 // const h1 = document.querySelector('h1');
 
