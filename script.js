@@ -96,6 +96,36 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
+const tabs = document.querySelectorAll('.operations__tab');
+const tabContainer = document.querySelector('.operations__tab-container');
+
+const contentAreas = document.querySelectorAll('.operations__content');
+
+// tabs.forEach(t=> t.addEventListener('click', function(e){
+
+// }))
+
+tabContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  if (!clicked) return;
+
+  //remove from all the other tabs
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  // activate content area
+
+  // console.log(clicked.dataset.tab);
+
+  contentAreas.forEach(e => {
+    e.classList.remove('operations__content--active');
+  });
+
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
 // const h1 = document.querySelector('h1');
 
 // console.log(h1.querySelectorAll('.highlight'));
