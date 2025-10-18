@@ -226,6 +226,96 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 imgxs.forEach(el => imgObserver.observe(el));
+let curSlide = 0;
+
+const slides = document.querySelectorAll('.slide');
+const maxSlides = slides.length - 1;
+const btnRight = document.querySelector('.slider__btn--right');
+const btnLeft = document.querySelector('.slider__btn--left');
+
+const goToSlide = function (slide) {
+  slides.forEach((s, i) => {
+    s.style.transform = `translateX(${(i - slide) * 100}%)`;
+  });
+};
+
+const NextSlide = function () {
+  if (curSlide === maxSlides) {
+    curSlide = 0;
+  } else {
+    curSlide++;
+  }
+
+  goToSlide(curSlide);
+  activateDot(curSlide);
+};
+
+const prevSlide = function () {
+  if (curSlide === 0) {
+    curSlide = maxSlides;
+  } else {
+    curSlide--;
+  }
+  goToSlide(curSlide);
+  activateDot(curSlide);
+};
+
+btnRight.addEventListener('click', NextSlide);
+btnLeft.addEventListener('click', prevSlide);
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowRight') {
+    NextSlide();
+  }
+  if (e.key === 'ArrowLeft') {
+    prevSlide();
+  }
+});
+
+// const dotCont = document.querySelector('.dots');
+// const createDots = function () {
+//   slides.forEach(function (s, i) {
+//     dotCont.insertAdjacentElement(
+//       'beforeend',
+//       `<button class="dots__dot" data-slide="${i}"></button>`
+//     );
+//   });
+// };
+
+const dotCont = document.querySelector('.dots');
+const createDots = function () {
+  slides.forEach(function (s, i) {
+    dotCont.insertAdjacentHTML(
+      'beforeend',
+      `<button class="dots__dot" data-slide="${i}"></button>`
+    );
+  });
+};
+
+dotCont.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dots__dot')) {
+    const slide = e.target.dataset.slide;
+    goToSlide(slide);
+    activateDot(slide);
+  }
+});
+
+const activateDot = function (slide) {
+  document
+    .querySelectorAll('.dots__dot')
+    .forEach(dot => dot.classList.remove('dots__dot--active'));
+
+  document
+    .querySelector(`.dots__dot[data-slide="${slide}"]`)
+    .classList.add('dots__dot--active');
+};
+
+const init = function () {
+  createDots();
+  activateDot(curSlide);
+  goToSlide(0);
+};
+
+init();
 
 // const h1 = document.querySelector('h1');
 // console.log(h1.querySelectorAll('.highlight'));
