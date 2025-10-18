@@ -317,6 +317,16 @@ const init = function () {
 
 init();
 
+window.addEventListener('load', function (ef) {
+  console.log(ef);
+});
+
+// window.addEventListener('beforeunload', function (ef) {
+//   ef.preventDefault();
+//   console.log(ef);
+//   ef.returnValue = 'her';
+// });
+
 // const h1 = document.querySelector('h1');
 // console.log(h1.querySelectorAll('.highlight'));
 // console.log(h1.childNodes);
